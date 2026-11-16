@@ -46,7 +46,7 @@
     "rows": 5294,
     "first_ts": 1642348800000,
     "last_ts": 1794816000000,
-    "downloaded_at": "2026-11-16T09:58:08.113771+00:00"
+    "downloaded_at": "2026-11-16T10:12:29.117181+00:00"
   },
   "ETH-USDT-SWAP_1H_mark.csv": {
     "sha256": "9ef7e9af9ff40cf2a9e78b8482baad126f5c843255187a66c7f29d339f42654b",
@@ -54,5 +54,19 @@
     "first_ts": 1640995200000,
     "last_ts": 1794816000000,
     "downloaded_at": "2026-11-16T10:00:53.085034+00:00"
+  },
+  "ETH-USDT-SWAP_15m_candles.csv": {
+    "sha256": "45a452389b13873921168fed32951d66245eb4e7e1730f569b39231adf868c8c",
+    "rows": 170920,
+    "first_ts": 1640995200000,
+    "last_ts": 1794822300000,
+    "downloaded_at": "2026-11-16T10:12:09.451540+00:00"
+  },
+  "ETH-USDT-SWAP_15m_mark.csv": {
+    "sha256": "3b430e83735c5781bea3af4109eb14f05bfdf44e21f37e3a65de0736d3e626f9",
+    "rows": 170920,
+    "first_ts": 1640995200000,
+    "last_ts": 1794822300000,
+    "downloaded_at": "2026-11-16T10:23:25.278283+00:00"
   }
 }
