@@ -44,6 +44,11 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser(prog="okxlab")
     sub = p.add_subparsers(dest="cmd", required=True)
+    sp = sub.add_parser("search")
+    sp.add_argument("--coin", required=True, choices=["BTC", "ETH"])
+    sp.add_argument("--families")
+    sp.add_argument("--entry-bars", default="15m,1H")
+    sp.add_argument("--out", default="results")
     for name in ("download", "validate", "backtest", "walkforward"):
         s = sub.add_parser(name)
         s.add_argument("--inst", default="BTC-USDT-SWAP")
@@ -66,6 +71,19 @@ def main():
         if name == "walkforward":
             s.add_argument("--train-days", type=int, default=365); s.add_argument("--test-days", type=int, default=90)
     a = p.parse_args()
+
+    if a.cmd == "search":
+        from pathlib import Path
+
+        from .search.pipeline import search_coin
+        res = search_coin(a.coin, Path(a.out), a.families.split(",") if a.families else None, tuple(a.entry_bars.split(",")))
+        for t in res["table"]:
+            s = t["oos_stats"]
+            print(f"{t['family']:17s} oos_n={s['n_trades']:4d} win={s['win_rate']:.2f} exp={s['expectancy_r']:+.2f}R "
+                  f"pf={s['profit_factor']:.2f} dd={s['max_drawdown']:.2f} dsr={t['dsr_prob']:.2f} "
+                  f"{'PASS' if t['passed'] else 'FAIL: ' + '; '.join(t['reasons'][:3])}")
+        print(f"trials={res['n_trials']} reality_check_p={res['rc_pvalue']:.3f} best={'none' if res['best'] is None else res['best']['family']}")
+        return
 
     if a.cmd == "download":
         if a.mark_only:
