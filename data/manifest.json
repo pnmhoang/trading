@@ -33,5 +33,19 @@
     "first_ts": 1640995200000,
     "last_ts": 1794819600000,
     "downloaded_at": "2026-11-16T09:37:23.522187+00:00"
+  },
+  "ETH-USDT-SWAP_1H_candles.csv": {
+    "sha256": "3ccbef0082a96c6e12118d6394c4c52f2340f0c6ef821f79c06dadf7c4f62513",
+    "rows": 42729,
+    "first_ts": 1640995200000,
+    "last_ts": 1794816000000,
+    "downloaded_at": "2026-11-16T09:57:48.103824+00:00"
+  },
+  "ETH-USDT-SWAP_funding.csv": {
+    "sha256": "fd8c0d498e342e54e3be2c202814b8feb75e8486b7bdf8479b6a179831d817f9",
+    "rows": 5294,
+    "first_ts": 1642348800000,
+    "last_ts": 1794816000000,
+    "downloaded_at": "2026-11-16T09:58:08.113771+00:00"
   }
 }
