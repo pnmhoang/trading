@@ -24,6 +24,7 @@ class Costs:
     vol_slip_k: float = 0.05       # + k * biên độ nến trước
     mmr: float = 0.005             # maintenance margin rate (xấp xỉ; OKX thật tăng theo tier)
     liq_fee: float = 0.005         # phí thanh lý / notional
+    tp_fee: float | None = None    # phí lệnh TP; None = dùng taker_fee (thận trọng)
 
 
 @dataclass
