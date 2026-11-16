@@ -44,6 +44,11 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser(prog="okxlab")
     sub = p.add_subparsers(dest="cmd", required=True)
+    for nm in ("frozen", "report"):
+        q = sub.add_parser(nm)
+        if nm == "frozen":
+            q.add_argument("--coin", required=True, choices=["BTC", "ETH"])
+        q.add_argument("--out", default="results")
     sp = sub.add_parser("search")
     sp.add_argument("--coin", required=True, choices=["BTC", "ETH"])
     sp.add_argument("--families")
@@ -71,6 +76,40 @@ def main():
         if name == "walkforward":
             s.add_argument("--train-days", type=int, default=365); s.add_argument("--test-days", type=int, default=90)
     a = p.parse_args()
+
+    if a.cmd == "frozen":
+        from pathlib import Path
+
+        from .search.frozen import run_frozen_test
+        sj = Path(a.out) / f"{a.coin}_search.json"
+        best = json.loads(sj.read_text(encoding="utf-8"))["best"]
+        if best is None:
+            print(f"{a.coin}: không có ứng viên qua bộ lọc; không chạy test đóng băng.")
+            return
+        res = run_frozen_test(a.coin, {"family": best["family"], "params": best["params"]}, Path(a.out))
+        print(fmt(res["stats"]), "ACCEPTED" if res["accepted"] else "REJECTED")
+        return
+
+    if a.cmd == "report":
+        from pathlib import Path
+
+        from .search.frozen import combine_portfolio
+        from .search.report import write_report
+        out = Path(a.out)
+        results, trades = {}, {}
+        for coin in ("BTC", "ETH"):
+            sj = out / f"{coin}_search.json"
+            if not sj.exists():
+                continue
+            fj = out / f"frozen_{coin}.json"
+            fz = json.loads(fj.read_text(encoding="utf-8")) if fj.exists() else None
+            results[coin] = {"search": json.loads(sj.read_text(encoding="utf-8")), "frozen": fz}
+            if fz and fz["accepted"]:
+                trades[coin] = pd.read_csv(out / f"frozen_{coin}_trades.csv")
+        port = combine_portfolio(trades) if len(trades) == 2 else None
+        write_report(results, out / "report.md", port)
+        print(f"Đã ghi {out / 'report.md'}")
+        return
 
     if a.cmd == "search":
         from pathlib import Path
