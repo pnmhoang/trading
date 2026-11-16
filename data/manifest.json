@@ -1,0 +1,37 @@
+{
+  "BTC-USDT-SWAP_1H_candles.csv": {
+    "sha256": "5931e75435a02a7b3c332015d5c75b90e33b4dc3b04ea8686dbe829737418ae7",
+    "rows": 42729,
+    "first_ts": 1640995200000,
+    "last_ts": 1794816000000,
+    "downloaded_at": "2026-11-16T09:07:12.802345+00:00"
+  },
+  "BTC-USDT-SWAP_funding.csv": {
+    "sha256": "b7caf99d08c8e9a0c64a8e72e0747f507027c6a4de6e35176fb44f57666ae0f2",
+    "rows": 5294,
+    "first_ts": 1642348800000,
+    "last_ts": 1794816000000,
+    "downloaded_at": "2026-11-16T09:26:32.857556+00:00"
+  },
+  "BTC-USDT-SWAP_1H_mark.csv": {
+    "sha256": "51c098c522ca1ce92eeed3c3f117209b78534855e120a3b1f21f8360a4eadcbf",
+    "rows": 42729,
+    "first_ts": 1640995200000,
+    "last_ts": 1794816000000,
+    "downloaded_at": "2026-11-16T09:15:00.708866+00:00"
+  },
+  "BTC-USDT-SWAP_15m_candles.csv": {
+    "sha256": "830bc6585645790e7050bc74ad1131f7fe7a0e8a44be1ac0e1840be534b850b3",
+    "rows": 170917,
+    "first_ts": 1640995200000,
+    "last_ts": 1794819600000,
+    "downloaded_at": "2026-11-16T09:26:12.947010+00:00"
+  },
+  "BTC-USDT-SWAP_15m_mark.csv": {
+    "sha256": "db8c331840875a920f4c3c6db100e0ca76c50cf0596046f0082c54ac22074e56",
+    "rows": 170917,
+    "first_ts": 1640995200000,
+    "last_ts": 1794819600000,
+    "downloaded_at": "2026-11-16T09:37:23.522187+00:00"
+  }
+}
